@@ -35,7 +35,7 @@ public class Main {
                     BigDecimal.valueOf(20.0)
             ));
 
-            printingOffice.getPaperManager().removePaper(paper.paperType(), paper.size(), copies * publication.getPages());
+            printingOffice.getPaperManager().removePaper(paper.paperType(), paper.size(), copies * publication.pages());
 
             System.out.println(printingMachine.getPrintedJobs());
             System.out.println("Number of pages printed by the machine: " + printingMachine.getPrintedPagesCount());

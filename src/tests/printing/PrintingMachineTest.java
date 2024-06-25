@@ -116,9 +116,9 @@ class PrintingMachineTest {
 
             assertEquals(1, machine.getPrintedJobs().size());
 
-            assertEquals("Poster", machine.getPrintedJobs().get(0).getPublication().getTitle());
-            assertEquals("AC/DC", machine.getPrintedJobs().get(0).getPublication().getIssue());
-            assertEquals(1, machine.getPrintedJobs().get(0).getPublication().getPages());
+            assertEquals("Poster", machine.getPrintedJobs().get(0).getPublication().title());
+            assertEquals("AC/DC", machine.getPrintedJobs().get(0).getPublication().issue());
+            assertEquals(1, machine.getPrintedJobs().get(0).getPublication().pages());
         } catch (PrintingException e) {
             fail();
         }

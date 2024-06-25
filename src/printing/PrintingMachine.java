@@ -32,7 +32,7 @@ public class PrintingMachine {
             throw new PrintingException("Color type mismatch");
         }
 
-        int pagesToPrint = job.getCopies() * job.getPublication().getPages();
+        int pagesToPrint = job.getCopies() * job.getPublication().pages();
         if (pagesToPrint > blankPages) {
             throw new PrintingException("Not enough blank pages");
         }
@@ -49,7 +49,7 @@ public class PrintingMachine {
     public int getPrintedPagesCount() {
         int pages = 0;
         for (PrintJob job : printedJobs) {
-            pages += job.getCopies() * job.getPublication().getPages();
+            pages += job.getCopies() * job.getPublication().pages();
         }
         return pages;
     }
