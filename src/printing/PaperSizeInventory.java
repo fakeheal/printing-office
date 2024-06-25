@@ -6,17 +6,15 @@ import utils.Pair;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
-public class PaperSizeInventory extends HashMap<PaperSize, Integer> {
-    private final HashMap<PaperSize, Pair<BigDecimal, Integer>> sizes = new HashMap<>();
-
+public class PaperSizeInventory extends HashMap<PaperSize, Pair<BigDecimal, Integer>> {
     public PaperSizeInventory() {
         for (PaperSize paperSize : PaperSize.values()) {
-            this.sizes.put(paperSize, new Pair<>(BigDecimal.ZERO, 0));
+            this.put(paperSize, new Pair<>(BigDecimal.ZERO, 0));
         }
     }
 
     public void addPaper(PaperSize paperSize, BigDecimal priceOrIncrement, int quantity) {
-        Pair<BigDecimal, Integer> pair = sizes.get(paperSize);
+        Pair<BigDecimal, Integer> pair = this.get(paperSize);
         BigDecimal price = pair.key();
         int currentQuantity = pair.value();
 
@@ -26,11 +24,11 @@ public class PaperSizeInventory extends HashMap<PaperSize, Integer> {
 
         currentQuantity += quantity;
 
-        sizes.put(paperSize, new Pair<>(price, currentQuantity));
+        this.put(paperSize, new Pair<>(price, currentQuantity));
     }
 
     public void removePaper(PaperSize paperSize, int quantity) throws ManagerException {
-        Pair<BigDecimal, Integer> pair = sizes.get(paperSize);
+        Pair<BigDecimal, Integer> pair = this.get(paperSize);
         int currentQuantity = pair.value();
 
         if (currentQuantity < quantity) {
@@ -39,6 +37,6 @@ public class PaperSizeInventory extends HashMap<PaperSize, Integer> {
 
         currentQuantity -= quantity;
 
-        sizes.put(paperSize, new Pair<>(pair.key(), currentQuantity));
+        this.put(paperSize, new Pair<>(pair.key(), currentQuantity));
     }
 }
