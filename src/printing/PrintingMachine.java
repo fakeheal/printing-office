@@ -57,4 +57,8 @@ public class PrintingMachine {
     public int getBlankPages() {
         return blankPages;
     }
+
+    public int getMaxBlankPages() {
+        return maxBlankPages;
+    }
 }
