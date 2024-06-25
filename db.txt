@@ -1,0 +1,5 @@
+Employees:
+John Doe,manager,1500,Jane Smith,operator,1500
+Paper:
+Printing Machines:
+
