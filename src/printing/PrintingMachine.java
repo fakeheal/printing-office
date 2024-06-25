@@ -28,7 +28,7 @@ public class PrintingMachine {
     }
 
     public void print(PrintJob job) throws PrintingException {
-        if (job.isColor() != isColor) {
+        if (job.isColor() && !isColor) {
             throw new PrintingException("Color type mismatch");
         }
 
@@ -52,5 +52,9 @@ public class PrintingMachine {
             pages += job.getCopies() * job.getPublication().getPages();
         }
         return pages;
+    }
+
+    public int getBlankPages() {
+        return blankPages;
     }
 }

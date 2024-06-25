@@ -19,7 +19,7 @@ public class Publication {
         return title;
     }
 
-    private String getIssue() {
+    public String getIssue() {
         return issue;
     }
 
