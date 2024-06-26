@@ -26,10 +26,14 @@ public class EmployeeManager {
         return employees;
     }
 
-    public BigDecimal calculateEmployeeSalaries() {
+    public BigDecimal calculateEmployeeSalaries(BigDecimal bonus) {
         BigDecimal totalSalaries = new BigDecimal(0);
         for (Employee employee : employees) {
-            totalSalaries = totalSalaries.add(employee.getSalary());
+            BigDecimal salary = employee.getSalary();
+            if (employee instanceof Manager) {
+                salary = salary.add(bonus);
+            }
+            totalSalaries = totalSalaries.add(salary);
         }
         return totalSalaries;
     }

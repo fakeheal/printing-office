@@ -1,5 +1,7 @@
 package printing;
 
+import exception.ManagerException;
+import exception.PrintingException;
 import interfaces.Paperable;
 import interfaces.PrintableMachine;
 
@@ -15,12 +17,20 @@ public class PrintingMachinesManager {
         printingMachines = new ArrayList<>();
     }
 
-    public void addPrintingMachine(int maxPages, boolean isColor) {
-        printingMachines.add(new PrintingMachine(maxPages, isColor));
+    public void addPrintingMachine(PrintableMachine machine) {
+        printingMachines.add(machine);
     }
 
     public ArrayList<PrintableMachine> getPrintingMachines() {
         return printingMachines;
+    }
+
+
+    public void loadPaperIntoMachine(PrintableMachine machine, PaperType paperType, PaperSize paperSize, int quantity) throws ManagerException, PrintingException {
+        if (!paperManager.hasEnoughSheets(paperType, paperSize, quantity)) {
+            throw new ManagerException("Not enough paper in inventory");
+        }
+        machine.loadPaper(quantity);
     }
 
     public BigDecimal calculateTotalPrintCost() {

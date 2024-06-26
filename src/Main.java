@@ -14,8 +14,9 @@ public class Main {
         printingOffice.getEmployeeManager().addEmployee("Jane", EmployeeType.operator);
         printingOffice.getEmployeeManager().addEmployee("Jack", EmployeeType.operator);
 
-        printingOffice.getPrintingMachinesManager().addPrintingMachine(100, true);
-        printingOffice.getPrintingMachinesManager().addPrintingMachine(200, false);
+//        printingOffice.getPrintingMachinesManager().addPrintingMachine(new NewspaperPrintingMachine(100, true));
+        printingOffice.getPrintingMachinesManager().addPrintingMachine(new PrintingMachine(100, true));
+        printingOffice.getPrintingMachinesManager().addPrintingMachine(new PrintingMachine(50, false));
 
         printingOffice.getPaperManager().addPaper(PaperType.glossy, PaperSize.A5, BigDecimal.valueOf(10), 100);
         printingOffice.getPaperManager().addPaper(PaperType.glossy, PaperSize.A3, BigDecimal.valueOf(50), 100);
@@ -25,19 +26,23 @@ public class Main {
         try {
             PaperSheet paperSheet = new PaperSheet(PaperSize.A3, PaperType.glossy);
             Publication publication = new Publication("Poster", "AC/DC", 1, paperSheet);
-            int copies = 1;
+            PrintJob printJob = new PrintJob(publication, 10, true, BigDecimal.valueOf(20.0));
 
-            printingMachine.loadPaper(100);
-            printingMachine.print(
-                    new PrintJob(
-                            publication,
-                            copies,
-                            true,
-                            BigDecimal.valueOf(20.0)
-                    )
+            printingOffice.getPrintingMachinesManager()
+                    .loadPaperIntoMachine(
+                            printingMachine,
+                            paperSheet.type(),
+                            paperSheet.size(),
+                            printJob.getCopies() * publication.pages()
+                    );
+
+            printingMachine.print(printJob);
+
+            printingOffice.getPaperManager().removePaper(
+                    paperSheet.type(),
+                    paperSheet.size(),
+                    printJob.getCopies() * publication.pages()
             );
-
-            printingOffice.getPaperManager().removePaper(paperSheet.type(), paperSheet.size(), copies * publication.pages());
 
             System.out.println(printingMachine.getPrintedJobs());
             System.out.println("Number of pages printed by the machine: " + printingMachine.getPrintedPagesCount());
@@ -46,9 +51,14 @@ public class Main {
         }
 
 
-        System.out.println("Employee salary: " + printingOffice.getEmployeeManager().calculateEmployeeSalaries());
+        BigDecimal profit = printingOffice.getPrintingMachinesManager().calculateTotalPrintProfit();
+        BigDecimal bonus = BigDecimal.ZERO;
+        if (profit.compareTo(BigDecimal.valueOf(10)) > 0) {
+            bonus = BigDecimal.valueOf(100);
+        }
+        System.out.println("Employee salary: " + printingOffice.getEmployeeManager().calculateEmployeeSalaries(bonus));
         System.out.println("Total print cost: " + printingOffice.getPrintingMachinesManager().calculateTotalPrintCost());
         System.out.println("Total print revenue: " + printingOffice.getPrintingMachinesManager().calculateTotalPrintRevenue());
-        System.out.println("Total print profit: " + printingOffice.getPrintingMachinesManager().calculateTotalPrintProfit());
+        System.out.println("Total print profit: " + profit);
     }
 }

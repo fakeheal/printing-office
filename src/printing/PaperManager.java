@@ -1,6 +1,7 @@
 package printing;
 
 import exception.ManagerException;
+import exception.PrintingException;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -15,14 +16,16 @@ public class PaperManager {
         }
     }
 
+    public boolean hasEnoughSheets(PaperType paperType, PaperSize paperSize, int quantity) {
+        return paperInventory.get(paperType).get(paperSize).value() >= quantity;
+    }
+
     public void addPaper(PaperType paperType, PaperSize paperSize, BigDecimal priceOrIncrement, int quantity) {
-        PaperSizeInventory inventory = paperInventory.get(paperType);
-        inventory.addPaper(paperSize, priceOrIncrement, quantity);
+        paperInventory.get(paperType).addPaper(paperSize, priceOrIncrement, quantity);
     }
 
     public void removePaper(PaperType paperType, PaperSize paperSize, int quantity) throws ManagerException {
-        PaperSizeInventory inventory = paperInventory.get(paperType);
-        inventory.removePaper(paperSize, quantity);
+        paperInventory.get(paperType).removePaper(paperSize, quantity);
     }
 
     public BigDecimal getCostPerSheet(PaperType paperType, PaperSize paperSize) {
