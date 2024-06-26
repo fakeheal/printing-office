@@ -24,4 +24,16 @@ public class PaperManager {
         PaperSizeInventory inventory = paperInventory.get(paperType);
         inventory.removePaper(paperSize, quantity);
     }
+
+    public BigDecimal getCostPerSheet(PaperType paperType, PaperSize paperSize) {
+        if (paperSize == PaperSize.A5) {
+            return paperInventory.get(paperType).get(paperSize).key();
+        }
+
+        return paperInventory.get(paperType).get(PaperSize.A5).key().add(
+                paperInventory.get(paperType).get(paperSize).key().multiply(
+                        paperInventory.get(paperType).get(PaperSize.A5).key()
+                )
+        );
+    }
 }

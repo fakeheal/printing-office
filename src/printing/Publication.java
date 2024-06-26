@@ -1,5 +1,8 @@
 package printing;
 
-public record Publication(String title, String issue, int pages, Paper paper) {
+import interfaces.Paperable;
+import interfaces.Printable;
+
+public record Publication(String title, String issue, int pages, Paperable paper) implements Printable {
 
 }

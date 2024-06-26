@@ -1,10 +1,11 @@
 package printing;
 
 import exception.PrintingException;
+import interfaces.PrintableMachine;
 
 import java.util.ArrayList;
 
-public class PrintingMachine {
+public class PrintingMachine implements PrintableMachine {
     private final int maxBlankPages;
     private final boolean isColor;
     private final ArrayList<PrintJob> printedJobs = new ArrayList<>();

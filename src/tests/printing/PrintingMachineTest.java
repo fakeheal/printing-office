@@ -39,7 +39,7 @@ class PrintingMachineTest {
             machine.loadPaper(50);
             machine.print(
                     new PrintJob(
-                            new Publication("Poster", "AC/DC", 1, new Paper(PaperSize.A5, PaperType.glossy)),
+                            new Publication("Poster", "AC/DC", 1, new PaperSheet(PaperSize.A5, PaperType.glossy)),
                             1,
                             true,
                             BigDecimal.valueOf(20.0)
@@ -56,7 +56,7 @@ class PrintingMachineTest {
                 PrintingException.class,
                 () -> machine.print(
                         new PrintJob(
-                                new Publication("Poster", "AC/DC", 1, new Paper(PaperSize.A5, PaperType.glossy)),
+                                new Publication("Poster", "AC/DC", 1, new PaperSheet(PaperSize.A5, PaperType.glossy)),
                                 1,
                                 true,
                                 BigDecimal.valueOf(20.0)
@@ -72,7 +72,7 @@ class PrintingMachineTest {
                 PrintingException.class,
                 () -> machine.print(
                         new PrintJob(
-                                new Publication("Poster", "AC/DC", 1, new Paper(PaperSize.A5, PaperType.glossy)),
+                                new Publication("Poster", "AC/DC", 1, new PaperSheet(PaperSize.A5, PaperType.glossy)),
                                 1,
                                 false,
                                 BigDecimal.valueOf(20.0)
@@ -88,7 +88,7 @@ class PrintingMachineTest {
             machine.loadPaper(50);
             machine.print(
                     new PrintJob(
-                            new Publication("Poster", "AC/DC", 1, new Paper(PaperSize.A5, PaperType.glossy)),
+                            new Publication("Poster", "AC/DC", 1, new PaperSheet(PaperSize.A5, PaperType.glossy)),
                             1,
                             false,
                             BigDecimal.valueOf(20.0)
@@ -107,7 +107,7 @@ class PrintingMachineTest {
             machine.loadPaper(50);
             machine.print(
                     new PrintJob(
-                            new Publication("Poster", "AC/DC", 1, new Paper(PaperSize.A5, PaperType.glossy)),
+                            new Publication("Poster", "AC/DC", 1, new PaperSheet(PaperSize.A5, PaperType.glossy)),
                             1,
                             true,
                             BigDecimal.valueOf(20.0)
@@ -133,7 +133,7 @@ class PrintingMachineTest {
             machine.loadPaper(100);
             machine.print(
                     new PrintJob(
-                            new Publication("Poster", "AC/DC", 25, new Paper(PaperSize.A5, PaperType.glossy)),
+                            new Publication("Poster", "AC/DC", 25, new PaperSheet(PaperSize.A5, PaperType.glossy)),
                             4,
                             true,
                             BigDecimal.valueOf(20.0)

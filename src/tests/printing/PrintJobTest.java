@@ -15,7 +15,7 @@ class PrintJobTest {
         assertThrows(
                 PrintingException.class,
                 () -> new PrintJob(
-                        new Publication("Title", "Issue", 10, new Paper(PaperSize.A3, PaperType.glossy)),
+                        new Publication("Title", "Issue", 10, new PaperSheet(PaperSize.A3, PaperType.glossy)),
                         1,
                         false,
                         BigDecimal.valueOf(-1)
@@ -28,7 +28,7 @@ class PrintJobTest {
         assertThrows(
                 PrintingException.class,
                 () -> new PrintJob(
-                        new Publication("Title", "Issue", 10, new Paper(PaperSize.A3, PaperType.glossy)),
+                        new Publication("Title", "Issue", 10, new PaperSheet(PaperSize.A3, PaperType.glossy)),
                         -1,
                         false,
                         BigDecimal.valueOf(1)
@@ -40,7 +40,7 @@ class PrintJobTest {
     void doesNotThrowExceptionIfDataIsValid() {
         try {
             new PrintJob(
-                    new Publication("Title", "Issue", 10, new Paper(PaperSize.A3, PaperType.glossy)),
+                    new Publication("Title", "Issue", 10, new PaperSheet(PaperSize.A3, PaperType.glossy)),
                     1,
                     false,
                     BigDecimal.valueOf(1)
