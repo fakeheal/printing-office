@@ -6,6 +6,8 @@ import printing.PrintJob;
 import java.util.ArrayList;
 
 public interface PrintableMachine {
+    int number = 1;
+
     void loadPaper(int amount) throws PrintingException;
 
     void print(PrintJob job) throws PrintingException;

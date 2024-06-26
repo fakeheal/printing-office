@@ -33,6 +33,7 @@ public class PaperManager {
         return paperInventory.get(paperType).get(PaperSize.A5).key().add(
                 paperInventory.get(paperType).get(paperSize).key().multiply(
                         paperInventory.get(paperType).get(PaperSize.A5).key()
+                                .divide(BigDecimal.valueOf(100))
                 )
         );
     }

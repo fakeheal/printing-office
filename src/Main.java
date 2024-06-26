@@ -24,7 +24,7 @@ public class Main {
 
 
         try {
-            PaperSheet paperSheet = new PaperSheet(PaperSize.A5, PaperType.glossy);
+            PaperSheet paperSheet = new PaperSheet(PaperSize.A3, PaperType.glossy);
             Publication publication = new Publication("Poster", "AC/DC", 1, paperSheet);
             int copies = 1;
 
